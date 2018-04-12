@@ -1,0 +1,37 @@
+<h2 class = "text-center">
+  <%= @cocktail.name %>
+</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <h4>Current Ingredients:</h4>
+        <% @cocktail.doses.each do |dose| %>
+          <p>
+            <%= dose.description  %>, <%= Ingredient.find(dose.ingredient_id).name %>
+            <br>
+            <%= link_to "Delete", dose_path(dose), method: :delete,
+                data: { confirm: "Are you sure?" } %>
+          </p>
+          <br>
+        <% end %>
+    </div>
+    <div class="col-xs-6">
+      <p class= "text-center">Add a description and an ingredient</p>
+      <%= simple_form_for [@cocktail, @dose], :html=> { class: 'text-center' }  do |f| %>
+        <% if @dose.errors.any? %>
+          <div class="errors-container">
+            <ul>
+              <% @dose.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= f.input :description %>
+        <%= f.association :ingredient %>
+        <%= f.submit "Add a Dose", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+  <%= link_to "Back home", cocktails_path %>
+</div>

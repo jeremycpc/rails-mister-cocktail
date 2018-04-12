@@ -1,0 +1,9 @@
+<h1 class="text-center" id="banner-typed-text"></h1>
+<div class="container">
+  <% @cocktails.each do |cocktail|  %>
+    <%= link_to cocktail.name, cocktail_path(cocktail) %>
+    <br>
+  <% end %>
+  <br>
+</div>
+<%= link_to "Create a cocktail", new_cocktail_path, { class: 'text-center' } %>
