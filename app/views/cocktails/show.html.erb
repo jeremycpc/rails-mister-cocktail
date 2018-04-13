@@ -43,4 +43,7 @@
     </div>
   </div>
   <%= link_to "Back home", root_path %>
+  <br>
+  <%= link_to "Delete cocktail", cocktail_path, method: :delete,
+  data: { confirm: "Are you sure?" } %>
 </div>
