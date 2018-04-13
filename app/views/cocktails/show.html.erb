@@ -27,15 +27,6 @@
     <div class="col-xs-6">
       <p class= "text-center">Add a description and an ingredient</p>
       <%= simple_form_for [@cocktail, @dose], :html=> { class: 'text-center' }  do |f| %>
-        <% if @dose.errors.any? %>
-          <div class="errors-container">
-            <ul>
-              <% @dose.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
         <%= f.input :description %>
         <%= f.association :ingredient %>
         <%= f.submit "Add a Dose", class: "btn btn-primary" %>
@@ -44,6 +35,6 @@
   </div>
   <%= link_to "Back home", root_path %>
   <br>
-  <%= link_to "Delete cocktail", cocktail_path, method: :delete,
+  <%= link_to "Delete cocktail", cocktail_path(@cocktail), method: :delete,
   data: { confirm: "Are you sure?" } %>
 </div>
