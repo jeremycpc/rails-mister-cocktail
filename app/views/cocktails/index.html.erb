@@ -1,9 +1,21 @@
 <h1 class="text-center" id="banner-typed-text"></h1>
 <div class="container">
-  <% @cocktails.each do |cocktail|  %>
-    <%= link_to cocktail.name, cocktail_path(cocktail) %>
-    <br>
-  <% end %>
-  <br>
+  <div class="row">
+    <% @cocktails.each do |cocktail|  %>
+      <%= link_to cocktail_path(cocktail) do %>
+        <div class="col-xs-12 col-sm-4">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/1600x900/?cocktails');">
+            <div class="card-description">
+              <h2> <%= cocktail.name %> </h2>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <p>
+    <%= link_to "Create a cocktail", new_cocktail_path, { class: 'text-center' } %>
+  </p>
 </div>
-<%= link_to "Create a cocktail", new_cocktail_path, { class: 'text-center' } %>
+
+

@@ -1,19 +1,28 @@
-<h2 class = "text-center">
-  <%= @cocktail.name %>
-</h2>
+
+<div class="banner"
+  <% if @cocktail.photo? %>
+  style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.2) 60%), url('<%= cl_image_path @cocktail.photo %>')"
+  <% else %>
+  style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.2) 60%), url('https://source.unsplash.com/1600x900/?cocktails')"
+  <% end %>
+  >
+  <h2 class="text-center">
+    <%= @cocktail.name %>
+  </h2>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-xs-6">
       <h4>Current Ingredients:</h4>
-        <% @cocktail.doses.each do |dose| %>
-          <p>
-            <%= dose.description  %>, <%= Ingredient.find(dose.ingredient_id).name %>
-            <br>
-            <%= link_to "Delete", dose_path(dose), method: :delete,
-                data: { confirm: "Are you sure?" } %>
-          </p>
-          <br>
-        <% end %>
+      <% @cocktail.doses.each do |dose| %>
+      <p>
+        <%= dose.description  %>, <%= Ingredient.find(dose.ingredient_id).name %>
+        <br>
+        <%= link_to "Delete", dose_path(dose), method: :delete,
+        data: { confirm: "Are you sure?" } %>
+      </p>
+      <br>
+      <% end %>
     </div>
     <div class="col-xs-6">
       <p class= "text-center">Add a description and an ingredient</p>
@@ -22,7 +31,7 @@
           <div class="errors-container">
             <ul>
               <% @dose.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
+              <li><%= message %></li>
               <% end %>
             </ul>
           </div>
